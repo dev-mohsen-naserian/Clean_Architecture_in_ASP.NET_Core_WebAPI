@@ -1,4 +1,5 @@
 using IOC.DependencyContainer;
+using WebApi.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.RegisterServices();
+builder.Services.AddScoped<ITokenService,ITokenService>();
 
 var app = builder.Build();
 

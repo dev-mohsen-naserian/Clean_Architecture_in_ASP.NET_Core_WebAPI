@@ -1,10 +1,12 @@
 ﻿using Application.Services.Interfaces;
 using Domain.DTOs.User;
+using Domain.Entities.User;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Services.Interfaces;
 
 namespace WebApi.Controllers;
 
-public class AccountController(IUserService userService) : BaseApiController
+public class AccountController(IUserService userService,ITokenService tokenService) : BaseApiController
 {
     #region Actions
     [HttpPost]
@@ -14,11 +16,12 @@ public class AccountController(IUserService userService) : BaseApiController
         switch (Result)
         {
             case LoginResult.Success:
-                break;
+                var user = await userService.GetByEmailAsync(model.Email);
+                return new JsonResult( new UserDto() {Avatar = null, DisplayName = user.DisplayName,Token = tokenService.CreateToken(user),UserName=user.UserName });
             case LoginResult.Error:
-                break;
+                return Unauthorized();
             case LoginResult.UserNotFound:
-                break;
+                return Unauthorized();
         }
         return Ok();
     }

@@ -1,4 +1,5 @@
 ﻿using Domain.DTOs.User;
+using Domain.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,4 +11,5 @@ namespace Application.Services.Interfaces;
 public interface IUserService
 {
     Task<LoginResult> LoginAsync(LoginDto model);
+    Task<UserEntity> GetByEmailAsync(string Email);
 }
