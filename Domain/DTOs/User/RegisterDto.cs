@@ -13,3 +13,9 @@ public class RegisterDto
     public string Password { get; set; }
     public string DisplayName { get; set; }
 }
+public enum RegisterResult
+{
+    Success,
+    Error,
+    DublicatedEmail
+}

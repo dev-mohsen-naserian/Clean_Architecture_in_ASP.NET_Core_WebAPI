@@ -12,4 +12,7 @@ public interface IUserService
 {
     Task<LoginResult> LoginAsync(LoginDto model);
     Task<UserEntity> GetByEmailAsync(string Email);
+    Task<UserEntity> GetByIdAsync(int Id);
+    Task<RegisterResult> RegisterAsync(RegisterDto model);
+
 }

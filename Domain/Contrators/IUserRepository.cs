@@ -10,4 +10,8 @@ namespace Domain.Contrators;
 public interface IUserRepository
 {
     Task<UserEntity> GetByEmailAsync(string Email);
+    Task<UserEntity> GetByIdAsync(int Id);
+    Task<bool> DublicatedEamilAsync(string Email);
+
+    Task InsertAsync();
 }
